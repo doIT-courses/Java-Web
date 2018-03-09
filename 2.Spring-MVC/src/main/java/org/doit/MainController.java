@@ -3,8 +3,10 @@ package org.doit;
 import org.doit.model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,12 +37,16 @@ public class MainController {
     }
 
     @GetMapping("/users/new")
-    public String getSignUp() {
+    public String getSignUp(Model model) {
+        model.addAttribute("user", new User());
         return "/sign_up";
     }
 
     @PostMapping("/users/new")
-    public String signUp(@ModelAttribute User user) {
+    public String signUp(@ModelAttribute @Valid User user, BindingResult result) {
+        if (result.hasErrors()) {
+            return "/sign_up";
+        }
         users.add(user);
         return "redirect:/users";
     }
