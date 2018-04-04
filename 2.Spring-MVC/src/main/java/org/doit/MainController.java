@@ -2,6 +2,7 @@ package org.doit;
 
 import org.doit.dao.UserDAO;
 import org.doit.model.User;
+import org.doit.util.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +20,9 @@ public class MainController {
 
     @Autowired
     private UserDAO userDAO;
+
+    @Autowired
+    private UserValidator userValidator;
 
     @GetMapping("/view/{name}")
     public String view(@PathVariable("name") String name, Model model) {
@@ -45,11 +49,12 @@ public class MainController {
     }
 
     @PostMapping("/users/new")
-    public String signUp(@ModelAttribute @Valid User user, BindingResult result) {
+    public String signUp(@ModelAttribute @Valid User user, BindingResult result) throws SQLException {
+        userValidator.validate(user, result);
         if (result.hasErrors()) {
             return "/sign_up";
         }
-//        users.add(user);
+        userDAO.add(user);
         return "redirect:/users";
     }
 
