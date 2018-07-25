@@ -19,7 +19,7 @@ import javax.validation.Valid;
 public class MainController {
 
     @Autowired
-    @Qualifier("jdbcApiUserDAO")
+    @Qualifier("hibernateUserDAO")
     private UserDAO userDAO;
 
     @Autowired
