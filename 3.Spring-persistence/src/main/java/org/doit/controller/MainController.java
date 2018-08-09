@@ -1,10 +1,9 @@
-package org.doit;
+package org.doit.controller;
 
-import org.doit.dao.UserDAO;
 import org.doit.model.User;
+import org.doit.service.UserService;
 import org.doit.util.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,8 +18,7 @@ import javax.validation.Valid;
 public class MainController {
 
     @Autowired
-    @Qualifier("jpaUserDAO")
-    private UserDAO userDAO;
+    private UserService userService;
 
     @Autowired
     private UserValidator userValidator;
@@ -39,7 +37,7 @@ public class MainController {
 
     @GetMapping("/users")
     public String getUsers(Model model) {
-        model.addAttribute("users", userDAO.getAll());
+        model.addAttribute("users", userService.getAll());
         return "/users";
     }
 
@@ -55,7 +53,7 @@ public class MainController {
         if (result.hasErrors()) {
             return "/sign_up";
         }
-        userDAO.add(user);
+        userService.add(user);
         return "redirect:/users";
     }
 

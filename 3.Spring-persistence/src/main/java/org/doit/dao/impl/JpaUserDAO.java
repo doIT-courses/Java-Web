@@ -14,7 +14,7 @@ import java.util.List;
 @Transactional(readOnly = true)
 public class JpaUserDAO implements UserDAO {
 
-    @PersistenceContext(unitName = "emf")
+    @PersistenceContext(unitName = "entityManagerFactory")
     private EntityManager entityManager;
 
     @Override
