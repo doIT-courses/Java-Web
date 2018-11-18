@@ -1,3 +1,4 @@
-url=
-username=
-password=
+jdbc.driver=
+jdbc.url=
+jdbc.user=
+jdbc.password=
