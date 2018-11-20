@@ -1,15 +1,12 @@
 package org.doit.controller;
 
-import org.doit.model.User;
 import org.doit.service.UserService;
-import org.doit.util.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * @author Aidar Shaifutdinov.
@@ -19,9 +16,6 @@ public class MainController {
 
     @Autowired
     private UserService userService;
-
-    @Autowired
-    private UserValidator userValidator;
 
     @GetMapping("/view/{name}")
     public String view(@PathVariable("name") String name, Model model) {
@@ -40,21 +34,4 @@ public class MainController {
         model.addAttribute("users", userService.getAll());
         return "/users";
     }
-
-    @GetMapping("/users/new")
-    public String getSignUp(Model model) {
-        model.addAttribute("user", new User());
-        return "/sign_up";
-    }
-
-    @PostMapping("/users/new")
-    public String signUp(@ModelAttribute @Valid User user, BindingResult result) {
-        userValidator.validate(user, result);
-        if (result.hasErrors()) {
-            return "/sign_up";
-        }
-        userService.add(user);
-        return "redirect:/users";
-    }
-
 }

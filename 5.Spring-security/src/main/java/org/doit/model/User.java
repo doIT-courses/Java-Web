@@ -25,13 +25,10 @@ public class User {
     @Email
     private String email;
 
-    public User() {
-    }
+    @Size(min = 7, max = 20, message = "From 7 to 20 symbols")
+    private String password;
 
-    public User(String name, String surname, String email) {
-        this.name = name;
-        this.surname = surname;
-        this.email = email;
+    public User() {
     }
 
     public String getName() {
@@ -64,5 +61,13 @@ public class User {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
