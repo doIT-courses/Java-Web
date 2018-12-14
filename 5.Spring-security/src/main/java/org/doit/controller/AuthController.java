@@ -37,7 +37,11 @@ public class AuthController {
     }
 
     @RequestMapping("/login")
-    public String login() {
+    public String login(@RequestParam(name = "error", required = false) Boolean error,
+                        Model model) {
+        if (Boolean.TRUE.equals(error)) {
+            model.addAttribute("error", true);
+        }
         return "auth/sign_in";
     }
 }

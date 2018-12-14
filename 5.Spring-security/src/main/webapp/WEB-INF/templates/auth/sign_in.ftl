@@ -12,5 +12,8 @@
         </div>
         <input type="submit">
     </form>
+    <#if error??>
+        <p>Bad credentials</p>
+    </#if>
 </body>
 </html>

@@ -12,7 +12,7 @@ import java.util.Properties;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("org.doit")
+@ComponentScan("org.doit.controller")
 public class WebConfig implements WebMvcConfigurer {
 
     @Bean

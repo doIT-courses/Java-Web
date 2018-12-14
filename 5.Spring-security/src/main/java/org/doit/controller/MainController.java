@@ -17,6 +17,11 @@ public class MainController {
     @Autowired
     private UserService userService;
 
+    @GetMapping("/")
+    public String home() {
+        return "redirect:/users";
+    }
+
     @GetMapping("/view/{name}")
     public String view(@PathVariable("name") String name, Model model) {
         model.addAttribute("msg", "Привет " + name);
