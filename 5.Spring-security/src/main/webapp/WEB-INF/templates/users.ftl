@@ -1,8 +1,6 @@
-<html>
-<head>
-    <title>Users</title>
-</head>
-    <body>
+<#include "main-template.ftl"/>
+
+<#macro content>
     <#if users?has_content>
         <ul>
             <#list users as user>
@@ -13,5 +11,6 @@
         <p>No users yet</p>
     </#if>
     <a href="/logout">Logout</a>
-    </body>
-</html>
+</#macro>
+
+<@main title="Users"/>

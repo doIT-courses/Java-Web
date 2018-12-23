@@ -1,8 +1,7 @@
-<html>
-<head>
-    <title>Home</title>
-</head>
-<body>
+<#include "main-template.ftl"/>
+
+<#macro content>
     ${msg}
-</body>
-</html>
+</#macro>
+
+<@main title="Home"/>

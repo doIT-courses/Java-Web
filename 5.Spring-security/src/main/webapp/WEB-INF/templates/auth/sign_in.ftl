@@ -1,8 +1,6 @@
-<html>
-<head>
-    <title>Login</title>
-</head>
-<body>
+<#include "../main-template.ftl"/>
+
+<#macro content>
     <form action="/login/process" method="post">
         <div>
             Email: <input name="email" type="email">
@@ -15,5 +13,6 @@
     <#if error??>
         <p>Bad credentials</p>
     </#if>
-</body>
-</html>
+</#macro>
+
+<@main title="Login"/>

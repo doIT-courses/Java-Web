@@ -1,10 +1,8 @@
+<#include "../main-template.ftl"/>
+
 <#assign sf=JspTaglibs["http://www.springframework.org/tags/form"]>
 
-<html>
-<head>
-    <title>Sign up</title>
-</head>
-<body>
+<#macro content>
     <@sf.form action="/sign_up" method="post" modelAttribute="user">
         <div>
             <@sf.label path="name">Name</@sf.label>
@@ -28,5 +26,6 @@
         </div>
         <input type="submit">
     </@sf.form>
-</body>
-</html>
+</#macro>
+
+<@main title="Sign up"/>
