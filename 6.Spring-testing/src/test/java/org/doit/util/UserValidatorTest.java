@@ -9,14 +9,12 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.context.support.AnnotationConfigContextLoader;
 import org.springframework.validation.Errors;
 
 import static org.mockito.Mockito.*;
 
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = TestConfig.class,
-        loader = AnnotationConfigContextLoader.class)
+@ContextConfiguration(classes = TestConfig.class)
 public class UserValidatorTest {
 
     @Autowired
@@ -50,5 +48,4 @@ public class UserValidatorTest {
         verify(errors, times(1))
                 .rejectValue(eq("email"), any(), any());
     }
-
 }
